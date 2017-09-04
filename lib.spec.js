@@ -27,6 +27,12 @@ describe('toFloatingPointSecondsFormat', function(){
 	});
 });
 
+function expectError(timestamp){
+	expect(function(){
+		return lib.formatTimestamp(timestamp);
+	}).to.throw('invalid date format: ' + timestamp);
+}
+
 describe('formatTimestamp', function(){
 	it('converts from Pacific time to Eastern', function () {
 		expect(lib.formatTimestamp('4/1/11 11:00:00 AM')).to.equal('2011-04-01T14:00:00-04:00');
@@ -36,6 +42,15 @@ describe('formatTimestamp', function(){
 	});
 	it('leapDay', function () {
 		expect(lib.formatTimestamp('2/29/16 12:11:11 PM')).to.equal('2016-02-29T15:11:11-05:00');
+	});
+	it('when there is a 4 digit year', function () {
+		expect(lib.formatTimestamp('2/29/2016 12:11:11 PM')).to.equal('2016-02-29T15:11:11-05:00');
+	});
+	it('there is an unexpected year separator', function(){
+		expect(lib.formatTimestamp('2-29-16 12:11:11 PM')).to.equal('2016-02-29T15:11:11-05:00');
+	});
+	it.skip('there is no AM/PM', function(){
+		expect(lib.formatTimestamp('2-29-16 12:11:11')).to.equal('2016-02-29T15:11:11-05:00');
 	});
 	it('errors when there is an invalid character', function(){
 		expectError('10/🍏/04 8:44:11 AM');
