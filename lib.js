@@ -18,6 +18,11 @@ function formatZip(zipcode) {
 	return padStart(zipcode, 5, '0');
 }
 
+function toFloatingPointSecondsFormat(timestamp /*HH:MM:SS.MS*/) {
+	const parts = timestamp.split(/[:.]/);  //HACK: a regex would provide better validation of the input
+	return parts[3] / 1000 + parts[2] / 1 + parts[1] * 60 + parts[0] * 3600;
+}
+
 function normalize(record) {
 	return record.map(function (value, index) {
 		switch (index) {
@@ -25,6 +30,9 @@ function normalize(record) {
 			return formatZip(value);
 		case 3:
 			return value.toUpperCase();
+		case 4:
+		case 5:
+			return toFloatingPointSecondsFormat(value);
 		default:
 			return value;
 		}
@@ -33,5 +41,6 @@ function normalize(record) {
 
 module.exports = {
 	formatZip: formatZip,
-	normalize: normalize
+	normalize: normalize,
+	toFloatingPointSecondsFormat: toFloatingPointSecondsFormat
 };
