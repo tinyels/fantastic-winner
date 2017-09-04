@@ -20,8 +20,11 @@ function padStart(str, targetLength, padString) {
 function formatZip(zipcode) {
 	return padStart(zipcode, 5, '0');
 }
+
 function formatTimestamp(timestamp){
-	return moment.tz(timestamp, 'America/Los_Angeles').clone().tz('America/New_York').format();
+	const parts = /(\d{1,2})[-/](\d{1,2})[-/](\d{1,4}) (\d{1,2}):(\d{2}):(\d{2}) ([AP]M)/.exec(timestamp);
+	if (!parts) throw new Error('invalid date format: ' + timestamp);
+	return moment.tz(timestamp, 'MM/DD/YYYY HH:mm:ss A', 'America/Los_Angeles').clone().tz('America/New_York').format();
 }
 function toFloatingPointSecondsFormat(timestamp /*HH:MM:SS.MS*/) {
 	const parts = timestamp.split(/[:.]/);  //HACK: a regex would provide better validation of the input

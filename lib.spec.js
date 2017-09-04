@@ -37,5 +37,8 @@ describe('formatTimestamp', function(){
 	it('leapDay', function () {
 		expect(lib.formatTimestamp('2/29/16 12:11:11 PM')).to.equal('2016-02-29T15:11:11-05:00');
 	});
+	it('errors when there is an invalid character', function(){
+		expectError('10/🍏/04 8:44:11 AM');
+	});
 
 });

@@ -9,7 +9,11 @@ process.stdin
 	.pipe(csv.parse())
 	.pipe(csv.transform(function (record) {
 		if (row++ === 0) return record;
-		return normalize(record);
+		try {
+			return normalize(record);
+		} catch (ex){
+			process.stderr.write(ex.message +'\n');
+		}
 	}))
 	.pipe(csv.stringify())
 	.pipe(process.stdout);
