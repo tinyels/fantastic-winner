@@ -23,6 +23,8 @@ function normalize(record) {
 		switch (index) {
 		case 2:
 			return formatZip(value);
+		case 3:
+			return value.toUpperCase();
 		default:
 			return value;
 		}
