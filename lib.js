@@ -1,5 +1,5 @@
 'use strict';
-var moment = require('moment');
+var moment = require('moment-timezone');
 
 //this is adapted from polyfill for es2017 padStart found at https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
 function padStart(str, targetLength, padString) {
@@ -21,7 +21,7 @@ function formatZip(zipcode) {
 	return padStart(zipcode, 5, '0');
 }
 function formatTimestamp(timestamp){
-	return moment(timestamp).format();
+	return moment.tz(timestamp, 'America/Los_Angeles').clone().tz('America/New_York').format();
 }
 function toFloatingPointSecondsFormat(timestamp /*HH:MM:SS.MS*/) {
 	const parts = timestamp.split(/[:.]/);  //HACK: a regex would provide better validation of the input

@@ -28,11 +28,14 @@ describe('toFloatingPointSecondsFormat', function(){
 });
 
 describe('formatTimestamp', function(){
+	it('converts from Pacific time to Eastern', function () {
+		expect(lib.formatTimestamp('4/1/11 11:00:00 AM')).to.equal('2011-04-01T14:00:00-04:00');
+	});
 	it('understands AM/PM', function () {
-		expect(lib.formatTimestamp('4/1/11 1:00:00 PM')).to.equal('2011-04-01T13:00:00-04:00');
+		expect(lib.formatTimestamp('4/1/11 1:00:00 PM')).to.equal('2011-04-01T16:00:00-04:00');
 	});
 	it('leapDay', function () {
-		expect(lib.formatTimestamp('2/29/16 12:11:11 PM')).to.equal('2016-02-29T12:11:11-05:00');
+		expect(lib.formatTimestamp('2/29/16 12:11:11 PM')).to.equal('2016-02-29T15:11:11-05:00');
 	});
 
 });
