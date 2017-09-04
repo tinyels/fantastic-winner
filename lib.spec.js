@@ -26,3 +26,13 @@ describe('toFloatingPointSecondsFormat', function(){
 		expect(lib.toFloatingPointSecondsFormat('01:05:45.123')).to.equal(3945.123);
 	});
 });
+
+describe('formatTimestamp', function(){
+	it('understands AM/PM', function () {
+		expect(lib.formatTimestamp('4/1/11 1:00:00 PM')).to.equal('2011-04-01T13:00:00-04:00');
+	});
+	it('leapDay', function () {
+		expect(lib.formatTimestamp('2/29/16 12:11:11 PM')).to.equal('2016-02-29T12:11:11-05:00');
+	});
+
+});
