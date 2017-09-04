@@ -1,0 +1,28 @@
+{
+  "name": "fantastic-winner",
+  "version": "1.0.0",
+  "description": "a sample csv normalizer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha lib.spec.js",
+    "lint": "eslint *.js || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinyels/fantastic-winner.git"
+  },
+  "author": "Erin Stanfill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tinyels/fantastic-winner/issues"
+  },
+  "homepage": "https://github.com/tinyels/fantastic-winner#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^3.5.0"
+  },
+  "dependencies": {
+    "csv": "^1.1.1"
+  }
+}
