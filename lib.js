@@ -24,7 +24,7 @@ function toFloatingPointSecondsFormat(timestamp /*HH:MM:SS.MS*/) {
 }
 
 function normalize(record) {
-	return record.map(function (value, index) {
+	var normalized = record.map(function (value, index) {
 		switch (index) {
 		case 2:
 			return formatZip(value);
@@ -37,6 +37,8 @@ function normalize(record) {
 			return value;
 		}
 	});
+	normalized[6] = normalized[4] + normalized[5];
+	return normalized;
 }
 
 module.exports = {
