@@ -22,8 +22,8 @@ function formatZip(zipcode) {
 }
 
 function formatTimestamp(timestamp){
-	const parts = /(\d{1,2})[-/](\d{1,2})[-/](\d{1,4}) (\d{1,2}):(\d{2}):(\d{2}) ([AP]M)/.exec(timestamp);
-	if (!parts) throw new Error('invalid date format: ' + timestamp);
+	if (! /\d{1,2}[-/]\d{1,2}[-/]\d{1,4} \d{1,2}:\d{2}:\d{2} [AP]M/.test(timestamp))
+		throw new Error('invalid date format: ' + timestamp);
 	return moment.tz(timestamp, 'MM/DD/YYYY HH:mm:ss A', 'America/Los_Angeles').clone().tz('America/New_York').format();
 }
 function toFloatingPointSecondsFormat(timestamp /*HH:MM:SS.MS*/) {
