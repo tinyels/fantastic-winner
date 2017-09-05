@@ -22,7 +22,7 @@ function formatZip(zipcode) {
 }
 
 function formatTimestamp(timestamp){
-	if (! /\d{1,2}[-/]\d{1,2}[-/]\d{1,4} \d{1,2}:\d{2}:\d{2} [AP]M/.test(timestamp))
+	if (! /\d{1,2}\/\d{1,2}\/\d{1,2} \d{1,2}:\d{2}:\d{2} [AP]M/.test(timestamp))
 		throw new Error('invalid date format: ' + timestamp);
 	return moment.tz(timestamp, 'MM/DD/YYYY HH:mm:ss A', 'America/Los_Angeles').clone().tz('America/New_York').format();
 }
