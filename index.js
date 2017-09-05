@@ -12,7 +12,7 @@ process.stdin
 		try {
 			return normalize(record);
 		} catch (ex){
-			process.stderr.write(ex.message +'\n');
+			process.stderr.write('line ' + row +': ' +ex.message +'\n');
 		}
 	}))
 	.pipe(csv.stringify())
