@@ -13,7 +13,7 @@ npm install
 ```
 ### Run unit tests
 ```
-npm run tests
+npm run test
 ```
 
 ### Run eslint
